@@ -1,4 +1,5 @@
 import express from 'express';
+import {createHabit} from '../Controllers/createHabit.js'
 const router = express.Router();
 
 router.post('/create-new-habit', createHabit);     // createHabit will be a function in the Controllers directory
