@@ -14,3 +14,13 @@ app.get("/", (req, res) => {
   //send index.html file
   res.sendFile("index.html");
 });
+
+app.get("/stats", (req, res) => {
+  //send index.html file
+  res.sendFile("stats.html");
+});
+
+app.get("/config", (req, res) => {
+  //send index.html file
+  res.sendFile("config.html");
+});
