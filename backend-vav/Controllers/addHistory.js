@@ -13,7 +13,7 @@ const addHistory = async (req,res) => {
             return res.status(400).json({ error : "Missing Required Fields"});
         }
 
-        await pool.query("INSERT INTO history VALUES ($1,$2,$3,$4,0,FALSE,0.0,(SELECT CURRENT_DATE)) RETURNING *",
+        await pool.query("INSERT INTO history VALUES ($1,$2,$3,$4,0,FALSE,0,(SELECT CURRENT_DATE)) RETURNING *",
             [habitName,habitIsVirtue,habitTrackingType,goalDayRequirement]
         );
         console.log("Added to History!");
