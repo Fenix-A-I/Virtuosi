@@ -9,7 +9,7 @@ CREATE TABLE virtues (
     goalDaycountCount INT,
     goalDaycountPeriod VARCHAR(4,5),
     goalWeekdaysDays VARCHAR,
-    goalStrakCheat VARCHAR,
+    goalStreakCheat VARCHAR,
     goalStreakSkipsDays int,
     goalStreakFreezesAccumulation int
 );

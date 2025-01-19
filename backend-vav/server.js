@@ -1,14 +1,17 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import pgPromise from "pg-promise";
+import pgp from "pg-promise";
+import { checkDatabaseConnection } from './db.js';
 import schedule from "node-schedule";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join('../virtues-and-vices/public')));
+app.use(express.json());
 
+await checkDatabaseConnection();
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
@@ -28,9 +31,10 @@ app.get("/config", (req, res) => {
   res.sendFile("config.html");
 });
 
-const pgp = require('pg-promise')(/* options */)
-const db = pgp('postgres://username:password@host:port/database')
+//const pgp = require('pg-promise')({/* Initialization Options */});
+//const db = pgp('postgres://postgres:MooDengDB@localhost:5432/Virtuosi');
 
+/*
 db.one('SELECT $1 AS value', 123)
   .then((data) => {
     console.log('DATA:', data.value)
@@ -38,7 +42,7 @@ db.one('SELECT $1 AS value', 123)
   .catch((error) => {
     console.log('ERROR:', error)
   })
-
+*/
   
 const globalResetJob = schedule.scheduleJob('0 0 * * *', () => {
   //yourVar = 1;
