@@ -1,10 +1,11 @@
 import express from 'express';
-import { createHabit,updateVirtue,updateDayStreaks } from '../Controllers/createHabit.js'
+import { createHabit,updateVirtue,updateDayStreaks } from '../Controllers/createHabit.js';
+import { deleteHabit } from '../Controllers/deleteHabit.js';
 const router = express.Router();
 
 router.post('/create-new-habit', createHabit);     // createHabit will be a function in the Controllers directory
-/*
-router.delete('/delete-habit', deleteHabit);
+
+router.delete('/delete-habit', deleteHabit);/*
 router.put('/update-habit', updateHabit);
 router.get('/get-habit', getHabit);
 router.get('/get-habits-list', getHabits);

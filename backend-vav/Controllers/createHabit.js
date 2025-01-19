@@ -35,6 +35,7 @@ const createHabit = async(req,res) => {
                 newGoalDayWeekdaysDays,newGoalStreakCheat,newGoalStreakSkipDays,newGoalStreakFreezesAccumulation
             ]
         );
+        console.log("Created Habit!");
         return res.status(200).json(result.rows[0]);
     } catch (err) {
         console.error("Error creating habit", err.message);
