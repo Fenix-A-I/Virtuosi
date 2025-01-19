@@ -35,7 +35,7 @@ or
 ```
 
 ## Technologies Used
-Node.js, React + Vite, PostgreSQL 
+Node.js, React + Vite, PostgreSQL, Gemini API
 
 ## File creation date
 The following README file was created: 18/1/2025
