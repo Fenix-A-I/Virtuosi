@@ -42,13 +42,13 @@ const MyForm = (props) => {
       {({ values }) => (
         <Form>
           {/* Habit Name */}
-          <div className="font-semibold">
+          <div className="font-semibold py-1">
             <label htmlFor="habitName">Habit Name:</label>
             <Field type="text" name="habitName" />
             <ErrorMessage name="habitName" component="div" />
           </div>
           {/* Habit Description */}
-          <div className="font-semibold">
+          <div className="font-semibold py-1">
             <label htmlFor="habitDescription">Habit Description:</label>
             <Field type="text" name="habitDescription" />
             <ErrorMessage name="habitDescription" component="div" />
@@ -72,7 +72,7 @@ const MyForm = (props) => {
 
           {/* Conditional Fields based on Tracking Type */}
           {values.habitTrackingType === "numerical" && (
-            <div className="font-semibold">
+            <div className="font-semibold py-1">
               <label htmlFor="habitNumericalTarget">Numerical Target:</label>
               <Field type="number" name="habitNumericalTarget" />
               <ErrorMessage name="habitNumericalTarget" component="div" />
@@ -198,7 +198,12 @@ const MyForm = (props) => {
             </div>
           )}
 
-          <button type="submit">Submit</button>
+          <button
+            className="bg-white p-1 rounded-md hover:bg-gray-400"
+            type="submit"
+          >
+            Add {props.theme.substring(0, props.theme.length - 1)}
+          </button>
         </Form>
       )}
     </Formik>
