@@ -1,7 +1,8 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import pgPromise from "pg-promise";
+import pgp from "pg-promise";
+import { checkDatabaseConnection } from './db.js';
 import schedule from "node-schedule";
 import "./Controllers/createHabit.js";
 
@@ -9,7 +10,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join('../virtues-and-vices/public')));
+app.use(express.json());
 
+await checkDatabaseConnection();
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`);
 });
