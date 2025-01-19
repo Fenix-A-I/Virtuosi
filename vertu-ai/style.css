@@ -123,11 +123,12 @@ body.show-chatbot .chatbot-popup {
     align-items: center;
 }
 
-.chat-body .bot-message .bot-avatar {
+.chat-body .bot-message .material-symbols-outlined {
     height: 35px;
     width: 35px;
     padding: 6px;
     fill: #fff;
+    color:white;
     flex-shrink: 0;
     margin-bottom: 2px;
     align-self: flex-end;
