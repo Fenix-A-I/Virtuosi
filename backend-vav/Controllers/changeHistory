@@ -1,0 +1,49 @@
+import {pool} from '../db.js';
+
+// Adds a completely new instance for a new day (called from the interval)
+const changeHistory = async (req,res) => {
+    try {
+        const {
+            habitName,
+            habitIsVirtue,
+            habitTrackingType,
+            goalDayRequirement,
+            discreteChange,
+            boolChange,
+            
+            } = req.body;
+        if (!habitName || !habitIsVirtue || !habitTrackingType || !goalDayRequirement) {
+            return res.status(400).json({ error : "Missing Required Fields"});
+        }
+
+        if (habitTrackingType=="time" || habitTrackingType=="numerical") {
+            if (!discreteChange) {
+                return res.status(400).json({error:"discreteChange attribute needed in body"});
+            }
+            let count = pool.query("SELECT count FROM history WhERE habitName=$1 AND habitIsVirtue=$2 AND habitTrackingType=$3 AND goalDayRequirement=$4 RETURNING *",
+                [habitName,habitIsVirtue,habitTrackingType,goalDayRequirement]
+            );
+            count += discreteChange;
+            const result = await pool.query("UPDATE history SET count=$1 WHERE habitName=$2 AND habitIsVirtue=$3 AND habitTrackingType=$4 AND goalDayRequirement=$5 RETURNING *",
+                [count,habitName,habitIsVirtue,habitTrackingType,goalDayRequirement]
+            );
+            return res.status(200).json(result.rows);
+        }   
+        if (habitTrackingType=="boolean") {
+            if (!boolChange) {
+                return res.status(400).json({error:"boolChange attribute needed in body"});
+            }
+            const result = await pool.query("UPDATE history SET completed=$1 WHERE habitName=$2 AND habitIsVirtue=$3 AND habitTrackingType=$4 AND goalDayRequirement=$5 RETURNING *",
+                [boolChange,habitName,habitIsVirtue,habitTrackingType,goalDayRequirement]
+            );
+            return res.status(200).json(result.rows);
+        }
+
+        return res.status(400).json({error:"Some parameters were forgotten"});
+    } catch (err) {
+        console.error("Error updating history:", err.message);
+        return res.status(500).json({error:"Internal Server Error"});
+    }
+}
+
+export { changeHistory };
