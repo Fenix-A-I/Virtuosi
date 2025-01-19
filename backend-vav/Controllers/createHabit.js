@@ -31,3 +31,21 @@ const createHabit = async(req,res) => {
         res.status(500).json({ err:"Internal Server Error"});
     }
 }
+
+const updateVirtue = async (habitName, newDescription) => {
+  try {
+    await db.none('UPDATE virtues SET habitDescription = $1 WHERE habitName = $2', [newDescription, habitName]);
+    console.log('Value updated successfully');
+  } catch (error) {
+    console.log('ERROR:', error);
+  }
+};
+
+const updateDayStreaks = async () => {
+  try {
+    await db.none('UPDATE virtues SET cur_streak = cur_streak + 1 WHERE habitIsVirtue = true');
+    console.log('Day streaks updated successfully');
+  } catch (error) {
+    console.log('ERROR:', error);
+  }
+};
