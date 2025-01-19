@@ -49,3 +49,5 @@ const updateDayStreaks = async () => {
     console.log('ERROR:', error);
   }
 };
+
+export {createHabit,updateVirtue,updateDayStreaks};

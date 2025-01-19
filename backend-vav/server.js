@@ -37,8 +37,8 @@ app.get("/config", (req, res) => {
   res.sendFile("config.html");
 });
 
-const pgp = require('pg-promise')(/* options */)
-const db = pgp('postgres://username:password@host:port/database')
+//const pgp = require('pg-promise')(/* options */)
+//const db = pgp('postgres://username:password@host:port/database')
 
 const globalResetJob = schedule.scheduleJob('0 0 * * *', () => {
   updateVirtue('exampleHabit', 'New description for the habit');
