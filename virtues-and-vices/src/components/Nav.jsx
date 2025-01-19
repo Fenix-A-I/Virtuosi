@@ -9,7 +9,7 @@ const Nav = () => {
     <nav
       className={`p-4 ${theme === "virtues" ? "bg-blue-100" : "bg-purple-100"}`}
     >
-      <ul className="flex space-x-4">
+      <ul className="flex justify-center space-x-4">
         <li>
           <NavLink
             to="/dashboard"
@@ -27,7 +27,7 @@ const Nav = () => {
               `${isActive ? "font-bold" : ""} hover:underline`
             }
           >
-            Add a Habit
+            Add a {theme.substring(0, theme.length - 1)}
           </NavLink>
         </li>
       </ul>

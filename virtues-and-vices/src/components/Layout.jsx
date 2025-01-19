@@ -8,11 +8,17 @@ const Layout = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className={`${theme === "virtues" ? "virtues-theme" : "vices-theme"}`}>
+    <div
+      className={`font-mono ${theme === "virtues" ? "virtues-theme" : "vices-theme"}`}
+    >
       <Header />
       <Nav />
-      <div className="app-layout">
-        <Outlet className="flex-col" />
+      <div
+        className={`min-h-screen max-h-screen ${theme === "virtues" ? "bg-blue-50" : "bg-purple-50"}`}
+      >
+        <div className="grid justify-items-center">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

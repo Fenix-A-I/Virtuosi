@@ -5,12 +5,22 @@ function HabitTrackingList() {
     habitName: "Get Stuff Done",
     habitDescription: "Do that jawn",
     successNum: 45,
-    goalDayRequirement: "daycount",
-    goalDayCount: 100,
-    goalDayCountPeriod: "week",
+    successNumLabel: "days",
+    goalDayRequirement: "weekdays",
+    goalDaycountCount: 100,
+    goalDaycountPeriod: "week",
+    goalWeekdaysDays: ["sat", "sun"],
+    goalStreakCheat: "none",
   };
 
-  return <HabitHistoryCard {...myObject} />;
+  const habits = [myObject, myObject];
+
+  return (
+    <div className="flex justify-center">
+      {habits.map((habit) => HabitHistoryCard(habit))}
+    </div>
+  );
+  // return <HabitHistoryCard {...myObject} />;
 }
 
 export default HabitTrackingList;

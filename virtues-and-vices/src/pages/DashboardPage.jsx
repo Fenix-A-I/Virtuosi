@@ -9,7 +9,7 @@ function DashboardPage() {
     <div
       className={`p-4 ${theme === "virtues" ? "bg-blue-50" : "bg-purple-50"}`}
     >
-      <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-4 r">Dashboard</h2>
       <p className="font-bold">
         Welcome to your {theme === "virtues" ? "Virtues" : "Vices"} dashboard!
       </p>

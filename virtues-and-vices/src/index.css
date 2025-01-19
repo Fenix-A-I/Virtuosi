@@ -32,14 +32,13 @@
     color: hsl(var(--primary-foreground));
 }
 
-.habit-history-card {
-    border-radius: 10px;
+.theme-card-color {
     padding: 1rem;
     background-color: var(--primary);
 }
 
 .app-layout {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     min-height: 100vh;
 }
