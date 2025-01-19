@@ -10,7 +10,8 @@ const getHabit = async (req,res) => {
             [habitName]
         );
         console.log("Retrieved Habit!");
-        return res.status(200).json(result.rows[0]);
+        console.log(result.rows);
+        return res.status(200).json({ data:result.rows});
     } catch(err) {
         console.error("Error retrieving habit:", err.message);
         return res.status(500).json({error:"Internal Server Error"})

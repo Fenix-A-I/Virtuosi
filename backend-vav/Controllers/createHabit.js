@@ -7,6 +7,8 @@ const createHabit = async(req,res) => {
             habitIsVirtue,
             habitDescription,
             habitTrackingType,
+            habitNumericalTarget,       //Used for count and time-interval targets
+            habitTimeTarget,
             goalDayRequirement,
             goalDaycountCount,
             goalDaycountPeriod,
@@ -18,7 +20,9 @@ const createHabit = async(req,res) => {
             return res.status(400).json({ error : "Missing Required Fields"});
         }
         
-        const newHabitDesc = habitDescription === undefined ? "a" : habitDescription;
+        const newHabitDesc = habitDescription === undefined ? "" : habitDescription;
+        const newHabitNumericalTarget = habitNumericalTarget === undefined ? null : habitNumericalTarget;
+        const  newHabitTimeTarget = habitTimeTarget === undefined ? null : habitTimeTarget;
         const newGoalDaycountCount = goalDaycountCount === undefined ? null : goalDaycountCount;
         const newGoalDaycountPeriod = goalDaycountPeriod === undefined ? null: goalDaycountPeriod;
         const newGoalDayWeekdaysDays = goalDayWeekdaysDays === undefined ? null: goalDayWeekdaysDays;
@@ -29,10 +33,11 @@ const createHabit = async(req,res) => {
         //console.log(habitName,habitIsVirtue,newHabitDesc,habitTrackingType,goalDayRequirement,newGoalDaycountCount,newGoalDaycountPeriod,
         //    newGoalDayWeekdaysDays,newGoalStreakCheat,newGoalStreakSkipDays,newGoalStreakFreezesAccumulation);
         // Are vals set to undefined?
-        const result = await pool.query("INSERT INTO virtues VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *",    //use pgp
+        const result = await pool.query("INSERT INTO virtues VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING *",    //use pgp
             [
-                habitName,habitIsVirtue,newHabitDesc,habitTrackingType,goalDayRequirement,newGoalDaycountCount,newGoalDaycountPeriod,
-                newGoalDayWeekdaysDays,newGoalStreakCheat,newGoalStreakSkipDays,newGoalStreakFreezesAccumulation
+                habitName,habitIsVirtue,newHabitDesc,habitTrackingType,goalDayRequirement,newHabitNumericalTarget,newHabitTimeTarget,
+                newGoalDaycountCount,newGoalDaycountPeriod,newGoalDayWeekdaysDays,newGoalStreakCheat,newGoalStreakSkipDays,
+                newGoalStreakFreezesAccumulation
             ]
         );
         console.log("Created Habit!");

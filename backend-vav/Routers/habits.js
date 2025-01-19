@@ -1,6 +1,11 @@
 import express from 'express';
 import { createHabit,updateVirtue,updateDayStreaks } from '../Controllers/createHabit.js';
 import { deleteHabit } from '../Controllers/deleteHabit.js';
+import { getHabit } from '../Controllers/gethabit.js';
+import { getHabits } from '../Controllers/getHabits.js';
+import { updateHabit } from '../Controllers/updateHabit.js';
+import { updateHabitName } from '../Controllers/updateHabitName.js';
+
 const router = express.Router();
 
 router.post('/create-new-habit', createHabit);     // createHabit will be a function in the Controllers directory
