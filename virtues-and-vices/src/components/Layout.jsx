@@ -9,14 +9,14 @@ const Layout = () => {
 
   return (
     <div
-      className={`font-mono ${theme === "virtues" ? "virtues-theme" : "vices-theme"}`}
+      className={`w-full font-mono ${theme === "virtues" ? "virtues-theme" : "vices-theme"}`}
     >
       <Header />
       <Nav />
       <div
-        className={`min-h-screen max-h-screen ${theme === "virtues" ? "bg-blue-50" : "bg-purple-50"}`}
+        className={`m-0 min-h-screen max-h-screen ${theme === "virtues" ? "bg-blue-50" : "bg-purple-50"}`}
       >
-        <div className="grid justify-items-center">
+        <div className="px-[10%] w-full min-w-screen grid justify-items-center">
           <Outlet />
         </div>
       </div>

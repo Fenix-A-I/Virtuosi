@@ -16,9 +16,7 @@ function HabitTrackingList() {
   const habits = [myObject, myObject];
 
   return (
-    <div className="flex justify-center">
-      {habits.map((habit) => HabitHistoryCard(habit))}
-    </div>
+    <div className="">{habits.map((habit) => HabitHistoryCard(habit))}</div>
   );
   // return <HabitHistoryCard {...myObject} />;
 }

@@ -56,9 +56,7 @@ function HabitHistoryCard(props) {
   console.log(theme);
 
   return (
-    <div
-      className={`theme-card-color rounded-md ${theme}-theme min-w-64 p-11 m-2`}
-    >
+    <div className={`theme-card-color rounded-md ${theme}-theme p11 m-2`}>
       <div className="flex justify-between text-lg">
         <span>
           <h3 className="font-bold text-lg">{props.habitName}</h3>

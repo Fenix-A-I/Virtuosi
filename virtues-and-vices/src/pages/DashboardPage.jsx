@@ -7,7 +7,7 @@ function DashboardPage() {
 
   return (
     <div
-      className={`p-4 ${theme === "virtues" ? "bg-blue-50" : "bg-purple-50"}`}
+      className={`w-full ${theme === "virtues" ? "bg-blue-50" : "bg-purple-50"}`}
     >
       <h2 className="text-2xl font-bold mb-4 r">Dashboard</h2>
       <p className="font-bold">

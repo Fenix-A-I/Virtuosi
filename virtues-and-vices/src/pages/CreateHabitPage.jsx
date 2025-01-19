@@ -15,7 +15,7 @@ const goalStreakCheats = ["none", "skips", "freezes"];
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
 const MyForm = (props) => {
-  console.log(props.theme);
+  props.theme;
   return (
     <Formik
       key={props.theme}
@@ -213,7 +213,7 @@ function CreateHabitPage() {
   const { theme } = useContext(ThemeContext);
   console.log("Sending prop theme with value ", theme, "to form");
   return (
-    <div className="justify-items-center">
+    <div className="w-full">
       <h1 className="font-semibold">
         Define your {theme === "virtues" ? "new" : "current"}{" "}
         {theme.substring(0, theme.length - 1)}
