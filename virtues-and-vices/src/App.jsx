@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createContext, useContext, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+/* Pages */
+import CreateHabitPage from "./pages/CreateHabitPage";
+import DashboardPage from "./pages/DashboardPage";
+import Layout from "./components/Layout.jsx";
+
+/* Theme */
+export const ThemeContext = createContext(null);
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState("virtues");
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "virtues" ? "vices" : "virtues"));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
-export default App
+function Routes() {
+  return createBrowserRouter([
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <DashboardPage />,
+        },
+        {
+          path: "/dashboard",
+          element: <DashboardPage />,
+        },
+        {
+          path: "/create-habit",
+          element: <CreateHabitPage />,
+        },
+      ],
+    },
+  ]);
+}
+
+function App() {
+  const router = Routes();
+
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
+}
+
+export default App;
