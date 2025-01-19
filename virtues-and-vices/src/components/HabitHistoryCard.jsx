@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { ThemeContext } from "../App";
 import { useContext } from "react";
+import HabitHistoryCalendar from "./HabitHistoryCalendar";
+import YearlyCalendarDots from "./CustomHistoryCalendar";
 
 function generateGoalDescription(props) {
   const formatList = (list) => {
@@ -55,6 +57,22 @@ function HabitHistoryCard(props) {
 
   console.log(theme);
 
+  const activeDates = [
+    "2024-01-01",
+    "2024-01-15",
+    "2024-02-14",
+    "2024-03-17",
+    "2024-04-22",
+    "2024-05-01",
+    "2024-06-21",
+    "2024-07-04",
+    "2024-08-15",
+    "2024-09-22",
+    "2024-10-31",
+    "2024-11-11",
+    "2024-12-25",
+  ];
+
   return (
     <div className={`theme-card-color rounded-md ${theme}-theme p11 m-2`}>
       <div className="flex justify-between text-lg">
@@ -66,6 +84,9 @@ function HabitHistoryCard(props) {
           <p className="font-bold text-xl">{props.successNum}</p>
           <p>{props.successNumLabel}</p>
         </span>
+      </div>
+      <div className="w-full max-w-7xl overflow-x-auto">
+        <YearlyCalendarDots dates={activeDates} year={2024} />
       </div>
     </div>
   );

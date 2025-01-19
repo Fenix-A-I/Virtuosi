@@ -21,7 +21,7 @@ const MyForm = (props) => {
       key={props.theme}
       initialValues={{
         habitName: "",
-        habitType: props.theme === "virtues" ? "virtue" : "vice", // Changed to habitType
+        habitType: props.theme === "virtues" ? "virtue" : "vice",
         habitDescription: "",
         habitTrackingType: "numerical",
         habitNumericalTarget: null,
@@ -34,9 +34,35 @@ const MyForm = (props) => {
         goalStreakSkipsDays: null,
         goalStreakFreezesAccumulation: null,
       }}
-      onSubmit={(values) => {
-        // Handle form submission
-        console.log(values);
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        try {
+          const response = await fetch(
+            "http://10.108.101.32:5432/api/create-habit",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values),
+            },
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log("Success:", data);
+
+          // Reset the form on successful submission
+          resetForm();
+          alert("Habit successfully created!");
+        } catch (error) {
+          console.error("Error submitting form:", error);
+          alert("An error occurred while creating the habit.");
+        } finally {
+          setSubmitting(false);
+        }
       }}
     >
       {({ values }) => (
