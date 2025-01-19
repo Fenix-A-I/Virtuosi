@@ -1,4 +1,4 @@
-import pool from '../db.js';
+import { pool } from '../db.js';
 
 const createHabit = async(req,res) => {
     try {
@@ -31,3 +31,5 @@ const createHabit = async(req,res) => {
         res.status(500).json({ err:"Internal Server Error"});
     }
 }
+
+export { createHabit };

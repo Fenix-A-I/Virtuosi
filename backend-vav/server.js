@@ -5,11 +5,16 @@ import pgp from "pg-promise";
 import { checkDatabaseConnection } from './db.js';
 import schedule from "node-schedule";
 
+import habitRoutes from "./Routers/habits.js";
+
 const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join('../virtues-and-vices/public')));
 app.use(express.json());
+
+// Connect Routers
+app.use('/api', habitRoutes);
 
 await checkDatabaseConnection();
 app.listen(PORT, () => {
