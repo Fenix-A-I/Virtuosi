@@ -11,7 +11,8 @@ CREATE TABLE virtues (
     goalWeekdaysDays VARCHAR,
     goalStreakCheat VARCHAR,
     goalStreakSkipsDays int,
-    goalStreakFreezesAccumulation int
+    goalStreakFreezesAccumulation int,
+    cur_streak int
 );
 
 CREATE TABLE history (

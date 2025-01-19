@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import pgp from "pg-promise";
 import { checkDatabaseConnection } from './db.js';
 import schedule from "node-schedule";
+import "./Controllers/createHabit.js";
 
 import habitRoutes from "./Routers/habits.js";
 
@@ -36,27 +37,10 @@ app.get("/config", (req, res) => {
   res.sendFile("config.html");
 });
 
-//const pgp = require('pg-promise')({/* Initialization Options */});
-//const db = pgp('postgres://postgres:MooDengDB@localhost:5432/Virtuosi');
+const pgp = require('pg-promise')(/* options */)
+const db = pgp('postgres://username:password@host:port/database')
 
-/*
-db.one('SELECT $1 AS value', 123)
-  .then((data) => {
-    console.log('DATA:', data.value)
-  })
-  .catch((error) => {
-    console.log('ERROR:', error)
-  })
-*/
-  
 const globalResetJob = schedule.scheduleJob('0 0 * * *', () => {
-  //yourVar = 1;
+  updateVirtue('exampleHabit', 'New description for the habit');
+  updateDayStreaks();
 });
-
-/* EXAMPLE
-let yourVar = 12345;
-  
-const globalResetJob = schedule.scheduleJob('0 0 * * *', () => {
-  yourVar = 1;
-});
-*/
